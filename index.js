@@ -1,5 +1,6 @@
 const { getSeriesData } = require("./series")
 const { getMovieData } = require("./movie")
+const { getTVShowData } = require("./TVShow"); // Import getTVShowData
 const { getEpisodeDataset } = require("./episode")
 const divineArrEqually = require("./divineArrEqually")
 const { downloadImage } = require("./image")
@@ -45,6 +46,9 @@ async function main({ url, saveDir, numOfPromises, forceUnlimitedPromises, skipN
     if (numOfPromises < 1) throw new Error(`--numOfPromises=${numOfPromises} is invalid cuz you can't have negative number of workers lol`)
     if (numOfPromises > NUM_OF_PROMISES_LIMIT && !forceUnlimitedPromises) {
         throw new Error(`--numOfPromises=${numOfPromises} is too big lol. Cloudflare won't like traffic from your network. Use --forceUnlimitedPromises to bypass (e.g. when you are running this script on Google Colab).`)
+    }
+    if (url.includes("https://fancaps.net/tv/showimages.php")) {
+        return await handleTVShow({ url, saveDir, numOfPromises, forceUnlimitedPromises, skipNLastPages, writeMetadata, readMetadata, dontDownloadImages, disableProgressBar });
     }
     if (url.includes("https://fancaps.net/movies/MovieImages.php")) {
         return await handleMovie({ url, saveDir, numOfPromises, forceUnlimitedPromises, skipNLastPages, writeMetadata, readMetadata, dontDownloadImages, disableProgressBar })
@@ -95,6 +99,44 @@ async function handleSeries({ url, saveDir, numOfPromises, skipNLastPages, write
     console.log("Download images...")
     if(!disableProgressBar) progressBarInterval(saveDir, imageDataset)
     await runPromises({ task: "downloadImages", dataset: imageDataset, metadata: { saveDir }, numOfPromises })
+}
+
+async function handleTVShow({ url, saveDir, numOfPromises, skipNLastPages, writeMetadata, readMetadata, dontDownloadImages, disableProgressBar }) {
+    let seriesTitle, episodeDataset;
+
+    if (readMetadata) {
+        episodeDataset = JSON.parse(fs.readFileSync("metadata.json", "utf-8"));
+        seriesTitle = episodeDataset[0].seriesTitle;
+    } else {
+        const { seriesTitle: fetchedSeriesTitle, episodes } = await getTVShowData(url);
+        seriesTitle = fetchedSeriesTitle;
+        episodeDataset = await runPromises({
+            task: "getEpisodeDataset",
+            dataset: episodes,
+            metadata: { seriesTitle, skipNLastPages },
+            numOfPromises
+        });
+    }
+
+    if (!readMetadata && writeMetadata) fs.writeFileSync("metadata.json", JSON.stringify(episodeDataset, null, 4));
+    if (dontDownloadImages) return;
+
+    if (!saveDir) saveDir = `./fancaps-images/${seriesTitle}`;
+    for (const { episodeTitle } of episodeDataset) {
+        const episodePath = path.resolve(saveDir, episodeTitle);
+        if (!fs.existsSync(episodePath)) fs.mkdirSync(episodePath, { recursive: true });
+    }
+
+    let imageDataset = [];
+    for (const { episodeTitle, imageUrls } of episodeDataset) {
+        for (const imageUrl of imageUrls) {
+            imageDataset.push({ imageUrl, title: episodeTitle });
+        }
+    }
+
+    console.log("Download images...");
+    if (!disableProgressBar) progressBarInterval(saveDir, imageDataset);
+    await runPromises({ task: "downloadImages", dataset: imageDataset, metadata: { saveDir }, numOfPromises });
 }
 
 async function handleMovie({ url, saveDir, numOfPromises, skipNLastPages, disableProgressBar }) {
