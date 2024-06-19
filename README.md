@@ -1,3 +1,7 @@
+![GitHub followers](https://img.shields.io/github/followers/duskfallcrew) ![GitHub forks](https://img.shields.io/github/forks/duskfallcrew/https%3A%2F%2Fgithub.com%2Fduskfallcrew%2Ffancaps-scraper%2F)
+
+
+
 # FanCaps-Scrapper
 
 A Python CLI scrapper for anime screenshots on https://fancaps.net.
@@ -108,8 +112,7 @@ $saveDir
 
 ## Contributing
 
-I'm an ameatur programmer so when you make a pull request, plz explain it at a way that is easy to understand. 
-Also I'm needing someone to refactor my code.
+I am NOT a programmer, i've been using ChatGPT to do a lot of these things, and I FULLY RESPECT Fannovel and JSarvise's original code. If you'd like to contribute to the nodeJS versions please see the linked forks in the first part of this. If you're interested in developing the python version either fork and do your own thing, or you can fork and help or however that works! 
 
 ## License
 
