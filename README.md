@@ -20,7 +20,6 @@ I come from a graphic design background rather than programming, yet I find grea
 This repository maintains the MIT license inherited from its original creators, Fannovel and JSarvise, to whom credit is due for their initial work. My role here is to provide an alternative implementation in Python. Currently, I am also exploring the use of a Jupyter notebook, as I encountered difficulties with the existing NodeJS implementation provided by Fannovel.
 
 The instructions in this README are initially based on the NodeJS version and are being progressively adapted for Python. Some sections retain a similar structure, and I am actively working on refining and expanding the content.
-
 ## Installation
 
 ```bash
@@ -28,6 +27,15 @@ git clone https://github.com/duskfallcrew/fancaps-scraper
 cd fancaps-scraper
 pip install -r requirements.txt
 ```
+### Why The Two Files? 
+
+One of them is a test file to handle memory leaks, and one is the main one, use it the same way you would the main one:
+Example from down below here:
+
+```bash
+python scraper-v2.py --url <URL_VALUE> --saveDir <SAVEDIR_VALUE> --numOfPromises <NUMOFPROMISES_VALUE> --skipNLastPages <SKIPNLASTPAGES_VALUE>
+```
+Disclaimer: It may not be working *YET* i'm not planning on running this locally, and am trying to port it to a Jupyter envivonrment. 
 
 ## Step-by-Step Guide
 #### Ensure Python Environment:
