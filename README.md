@@ -27,15 +27,6 @@ git clone https://github.com/duskfallcrew/fancaps-scraper
 cd fancaps-scraper
 pip install -r requirements.txt
 ```
-### Why The Two Files? 
-
-One of them is a test file to handle memory leaks, and one is the main one, use it the same way you would the main one:
-Example from down below here:
-
-```bash
-python scraper-v2.py --url <URL_VALUE> --saveDir <SAVEDIR_VALUE> --numOfPromises <NUMOFPROMISES_VALUE> --skipNLastPages <SKIPNLASTPAGES_VALUE>
-```
-Disclaimer: It may not be working *YET* i'm not planning on running this locally, and am trying to port it to a Jupyter envivonrment. 
 
 ## Step-by-Step Guide
 #### Ensure Python Environment:
@@ -130,6 +121,17 @@ $saveDir
 ├── anotherIntId.jpg
 ├── ...
 ```
+
+##### Why The Two Files? 
+
+One of them is a test file to handle memory leaks, and one is the main one, use it the same way you would the main one:
+Example here:
+
+```bash
+python scraper-v2.py --url <URL_VALUE> --saveDir <SAVEDIR_VALUE> --numOfPromises <NUMOFPROMISES_VALUE> --skipNLastPages <SKIPNLASTPAGES_VALUE>
+```
+Disclaimer: It may not be working *YET* i'm not planning on running this locally, and am trying to port it to a Jupyter envivonrment. 
+
 ## Contributing
 
 I am NOT a programmer, i've been using ChatGPT to do a lot of these things, and I FULLY RESPECT Fannovel and JSarvise's original code. If you'd like to contribute to the nodeJS versions please see the linked forks in the first part of this. If you're interested in developing the python version either fork and do your own thing, or you can fork and help or however that works! 
