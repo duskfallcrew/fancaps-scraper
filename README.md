@@ -5,62 +5,69 @@
 
 # FanCaps-Scrapper
 
-A Python CLI scrapper for anime screenshots on https://fancaps.net.
+A Python CLI scrapper for anime screenshots & Fan Screen on https://fancaps.net.
 
 README template from https://www.makeareadme.com/
 
-This was forked from [Fannovel](https://github.com/Fannovel16/fancaps-scraper)
+This was forked from [Fannovel](https://github.com/Fannovel16/fancaps-scraper) , As well as the most recent fork for NodeJS: [JSarvise](https://github.com/JSarvise/fancaps-scraper)
 
-As well as the most recent fork for NodeJS: [JSarvise](https://github.com/JSarvise/fancaps-scraper)
 
-As this is in heavy developmenet because i don't understand Javascript, and i am more used to Python - please have patience.  I'm not a programmer, i'm a graphic designer by nature and I enjoy using ChatGPT to solve problems.. or in this case create them xD. 
+## Note on Development and Context
+This project is currently in active development as I navigate learning JavaScript, a language that differs significantly from my primary experience in Python. Please bear with me as I adapt and develop this repository.
 
-I realize that NodeJS doesn't -SUCK- per se, but i'm so used to using python in my AI training that using Javascript at THIS STAGE confused me.  This repository retains the MIT liscence from the first two, and I do not claim to own this code. Fannovel & JSarvise are the credits to doing all of the original work, i'm just updating it to python as an alternative, and am working on a Jupyter notebook as i can't get the other one that Fannovel made to work. 
+I come from a graphic design background rather than programming, yet I find great utility in using ChatGPT to solve problems—sometimes inadvertently creating new ones in the process! While I acknowledge that NodeJS has its merits, my familiarity with Python, especially in AI training, has led me to translate this project into Python.
 
-The instructions on this readme are based on the NOdeJS and i'm working on converting it to the python instructions.
+This repository maintains the MIT license inherited from its original creators, Fannovel and JSarvise, to whom credit is due for their initial work. My role here is to provide an alternative implementation in Python. Currently, I am also exploring the use of a Jupyter notebook, as I encountered difficulties with the existing NodeJS implementation provided by Fannovel.
+
+The instructions in this README are initially based on the NodeJS version and are being progressively adapted for Python. Some sections retain a similar structure, and I am actively working on refining and expanding the content.
 
 ## Installation
 
 ```bash
 git clone https://github.com/duskfallcrew/fancaps-scraper
 cd fancaps-scraper
-npm install
-cd ..
+pip install -r requirements.txt
 ```
 
-## Usage
-### CLI syntax
+## Step-by-Step Guide
+#### Ensure Python Environment:
+Make sure you have Python installed on your system. You can check this by running:
+
 ```bash
-node fancaps-scraper [-h] [-v] \ 
-    --seriesUrl SERIESURL \
-    [--saveDir SAVEDIR] \
-    [--numOfPromises NUMOFPROMISES] \
-    [--forceUnlimitedPromises] \
-    [--skipNLastPages SKIPNLASTPAGES] \
-    [--writeMetadata] \
-    [--readMetadata] \
-    [--dontDownloadImages] \
+python --version
 ```
-Arguments:
-  * -h, --help:            show this help message and exit
-  * -v, --version:         show program's version number and exit
-  * `--url URL`: The url of the series or movie you want to download images from, not the episode url.<br>Any kind of url that starts with `https://fancaps.net/movies/MovieImages.php` or `https://fancaps.net/anime/showimages.php` will be accepted e.g.:
-  ** https://fancaps.net/anime/showimages.php?33224-Bocchi_the_Rock
-  ** https://fancaps.net/movies/MovieImages.php?name=Fate_Stay_Night_Heaven_s_Feel_I_Presage_Flower_2017&movieid=2666
-  ** https://fancaps.net/movies/MovieImages.php?movieid=2666
-  * `--saveDir SAVEDIR`:     The location to save images, the default value is ./fancaps-images/title of series<br>(e.g. ./fancaps-images/Bocchi The Rock)
-  * `--numOfPromises NUMOFPROMISES`: The number of promises to use (imagine it is similar to multi-threading).<br>A error will be thrown if it > 75 due to Cloudflare CDN's hidden rate limit unless --forceUnlimitedPromises is passed
-  * `--forceUnlimitedPromises`
-  * `--skipNLastPages SKIPNLASTPAGES`: Skip n last pages so most of credit frames won't be downloaded
-  * `--writeMetadata`:       Write episodeDataset to metadata.json
-  * `--readMetadata`:        Read episodeDataset from metadata.json
-  * --dontDownloadImages
-  * --colab: Add line break to the progress bar if the env is Colab
-  * --disableProgressBar
+#### Navigate to Script Directory:
+Open your terminal or command prompt and navigate to the directory where your Python script (fan_caps_scraper.py) is located. You can change directories using the cd command:
 
-### Result folder architecture
-#### Episode
+```bash
+cd path/to/your/script
 ```
+#### Run the Script:
+To execute your Python script with command-line arguments, use the following format:
+
+```bash
+python scraper.py --url <URL_VALUE> --saveDir <SAVEDIR_VALUE> --numOfPromises <NUMOFPROMISES_VALUE> --skipNLastPages <SKIPNLASTPAGES_VALUE>
+```
+Replace <URL_VALUE>, <SAVEDIR_VALUE>, <NUMOFPROMISES_VALUE>, and <SKIPNLASTPAGES_VALUE> with the actual values you want to use.
+
+For example:
+```bash
+python scraper.py --url https://fancaps.net/anime/showimages.php?33224-Bocchi_the_Rock --saveDir ./fancaps-images/Bocchi_The_Rock --numOfPromises 50 --skipNLastPages 1
+```
+
+
+#### Executing:
+After entering the command, hit Enter. Your script will start executing. Depending on the network speed, number of images, and other factors, it might take some time to complete.
+
+Arguments:
+--url: Required argument specifying the URL of the series or movie from which you want to download images.
+--saveDir: Optional argument specifying the directory where images will be saved. Defaults to ./fancaps-images/<series/movie_title>.
+--numOfPromises: Optional argument specifying the number of concurrent requests (promises) to use. Defaults to 75.
+--skipNLastPages: Optional argument specifying how many of the last pages to skip. Defaults to 2.
+### Result folder architecture
+
+Episode
+```bash
 $saveDir
 ├── Episode 1
 │   ├── intId.jpg
@@ -72,12 +79,16 @@ $saveDir
 │   ├── ...
 ├── Episode ...
 ```
-For example: 
+Example:
+
+For example, running:
+
 ```bash
-node fancaps-scraper --seriesUrl="https://fancaps.net/anime/showimages.php?33224-Bocchi_the_Rock"
+python fancaps_scraper.py --url="https://fancaps.net/anime/showimages.php?33224-Bocchi_the_Rock"
 ```
-Should give the following result:
-```
+Should result in the following folder structure:
+
+```bash
 ./fancaps-images/Bocchi the Rock!
 ├───Episode 1
 │   ├── 22361835.jpg
@@ -103,14 +114,14 @@ Should give the following result:
 ├───Episode 11
 └───Episode 12
 ```
-#### Movie
-```
+Movie
+```bash
+
 $saveDir
 ├── intId.jpg
 ├── anotherIntId.jpg
 ├── ...
 ```
-
 ## Contributing
 
 I am NOT a programmer, i've been using ChatGPT to do a lot of these things, and I FULLY RESPECT Fannovel and JSarvise's original code. If you'd like to contribute to the nodeJS versions please see the linked forks in the first part of this. If you're interested in developing the python version either fork and do your own thing, or you can fork and help or however that works! 
