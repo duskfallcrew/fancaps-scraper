@@ -1,3 +1,4 @@
 aiohttp==3.8.1
 beautifulsoup4==4.10.0
 aiofiles==0.7.0
+argparse==1.4.0
