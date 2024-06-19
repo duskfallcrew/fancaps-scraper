@@ -1,4 +1,4 @@
-![GitHub followers](https://img.shields.io/github/followers/duskfallcrew) ![GitHub forks](https://img.shields.io/github/forks/duskfallcrew/https%3A%2F%2Fgithub.com%2Fduskfallcrew%2Ffancaps-scraper%2F)
+![GitHub followers](https://img.shields.io/github/followers/duskfallcrew) ![Discord](https://img.shields.io/discord/1024442483750490222?style=for-the-badge)
 
 
 
