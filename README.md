@@ -1,4 +1,5 @@
-![GitHub followers](https://img.shields.io/github/followers/duskfallcrew) ![Discord](https://img.shields.io/discord/1024442483750490222?style=for-the-badge)
+![GitHub followers](https://img.shields.io/github/followers/duskfallcrew)  ![GitHub Sponsors](https://img.shields.io/github/sponsors/duskfallcrew)
+![Discord](https://img.shields.io/discord/1024442483750490222?style=for-the-badge)
 
 
 
