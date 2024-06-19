@@ -1,12 +1,23 @@
 # FanCaps-Scrapper
 
-A Node.js async CLI scrapper for anime screenshots on https://fancaps.net.
+A Python CLI scrapper for anime screenshots on https://fancaps.net.
+
 README template from https://www.makeareadme.com/
+
+This was forked from [Fannovel](https://github.com/Fannovel16/fancaps-scraper)
+
+As well as the most recent fork for NodeJS: [JSarvise](https://github.com/JSarvise/fancaps-scraper)
+
+As this is in heavy developmenet because i don't understand Javascript, and i am more used to Python - please have patience.  I'm not a programmer, i'm a graphic designer by nature and I enjoy using ChatGPT to solve problems.. or in this case create them xD. 
+
+I realize that NodeJS doesn't -SUCK- per se, but i'm so used to using python in my AI training that using Javascript at THIS STAGE confused me.  This repository retains the MIT liscence from the first two, and I do not claim to own this code. Fannovel & JSarvise are the credits to doing all of the original work, i'm just updating it to python as an alternative, and am working on a Jupyter notebook as i can't get the other one that Fannovel made to work. 
+
+The instructions on this readme are based on the NOdeJS and i'm working on converting it to the python instructions.
 
 ## Installation
 
 ```bash
-git clone https://github.com/Fannovel16/fancaps-scraper
+git clone https://github.com/duskfallcrew/fancaps-scraper
 cd fancaps-scraper
 npm install
 cd ..
