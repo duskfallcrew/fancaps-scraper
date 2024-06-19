@@ -7,6 +7,8 @@
 
 A Python CLI scrapper for anime screenshots & Fan Screen on https://fancaps.net.
 
+As well as an in progress Jupyter Notebook that doesn't need the python file because i'm an idiot, and i like EXTREMELY LARGE things in text boxes - Don't worry i'll fix this later XD.
+
 README template from https://www.makeareadme.com/
 
 This was forked from [Fannovel](https://github.com/Fannovel16/fancaps-scraper) , As well as the most recent fork for NodeJS: [JSarvise](https://github.com/JSarvise/fancaps-scraper)
