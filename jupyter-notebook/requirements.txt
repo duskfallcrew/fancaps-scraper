@@ -31,5 +31,7 @@ pyngrok
 ipywidgets
 fiftyone-db-ubuntu2204
 pyngrok
+numpy
+
 
 #these do install some temporarily redunant requirements, but bear with me i'm trying to build the notebook without requiring extra commands
